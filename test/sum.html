@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        .wrap{
+            width:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        .container{
+            width: 50%;
+            height:50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #FFF8DC;
+            border-radius: 10px;
+            border: 1.5px solid gray;
+            padding: 50px;
+        }
+        .item-1{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sumButton{
+            cursor: pointer;
+            background-color:#e3d5ca;
+            border: 1.5px solid #403d39;
+            color: #403d39;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .sumButton:hover {
+            background-color: #6d6875;
+            color: #f1faee;
+        }
+        .inputNumber{
+            font-size: 15px;
+            font-weight: 600;
+            border: 1.5px solid #c9ada7;
+            border-radius: 5px;
+            padding: 6px 10px;
+            margin-right: 10px;
+        }
+        .item-1 label{
+            background-color: rgb(83, 79, 79);
+            border-radius: 5px;
+            border:1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 9px;
+            font-size: 15px;
+            width:150px;
+            height: 30px;
+            color: #f1faee;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="container">
+        <div class = "item-1">
+            <input class="inputNumber" id="inputNumber" type="text" placeholder="請填入正整數">
+            <button class="sumButton">送出計算</button>
+            <label id="sumResult">提示 : 請按下送出</label>
+            
+        </div>
+
+    </div>
+</div>
+</body>

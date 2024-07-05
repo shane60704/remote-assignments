@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myName</title>
+    <style>
+        .wrap{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wrap a{
+            padding:5px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            background-color: #e3d5ca;
+            text-decoration: none;
+            margin-left: 5px;
+            color: #403d39;
+            font-weight: 600;
+        }
+        .wrap a:hover{
+            color:white;
+            background-color: #6d6875;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>Hello, <span th:text="${userName}"></span>!</h1>
+        <a href="http://localhost:3000/deleteCookie" id="deleteButton" th:if="${userName} != null">刪除</a>
+    </div>
+
+    <script>
+        const deleteButton = document.getElementById("deleteButton")
+        deleteButton.addEventListener('click',()=>{
+            alert('成功刪除!');
+        });
+    </script>
+</body>
+</html>

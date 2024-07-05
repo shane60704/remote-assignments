@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        html{
+            font-size:10px;
+        }
+        .wrap-1{
+            width:100%;
+            background-color: azure;
+            display: flex;
+            padding: 30px;
+            
+        }
+        .button1{
+            padding: 10px;
+            background-color: bisque;
+            border-radius: 5px;
+            border: 1px solid gray;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .button2{
+            padding: 12.5px;
+            background-color: bisque;
+            border-radius: 5px;
+            border: 1px solid gray;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .button1:hover , 
+        .button2:hover{
+            background-color: brown;
+        }
+        .amount{
+            width:50px;
+            padding: 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0px 5px;
+            text-align: center;
+        }
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        .todolist-wrap{
+            width:100%;
+            background-color: gray;
+            padding: 10px;
+            
+        }
+        .button4{
+            display: none;
+        }
+    </style>
+    <script src="./test.js"></script>
+</head>
+<body>
+    <div class="wrap-1">
+        <button class="button1">+</button>
+        <input type="number" class="amount" value="0"></input>
+        <button class="button2">-</button>
+    </div>
+    <div class="todolist-wrap">
+        <p>清單</p>
+        <div class="form-container">
+            <div class="todo">
+                <input class="inputtext" type="text" placeholder="請撰寫文字"></input>
+                <button class="button3">提交</button>
+            </div>
+            <div class="list">
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <button class="button4">刪除勾選項目</button>
+    </div>
+
+
+    <script>
+
+        const todoButton = document.querySelector('.button3');
+        const todoInput = document.querySelector('.inputtext');
+        const list = document.querySelector('.list');
+        const deleteButton = document.querySelector('.button4');
+
+        todoButton.addEventListener('click',() => {
+            const todo = todoInput.value;
+            if (todo) {
+                list.innerHTML += `<li><input type="checkbox" class="todo-checkbox"> ${todo}</li>`;
+                deleteButton.style.display = "block";
+                todoInput.value = '';
+            }
+        });
+
+        deleteButton.addEventListener('click',() =>{
+            const checkboxes = document.querySelectorAll('.todo-checkbox');
+            checkboxes.forEach(checkbox =>{
+                if(checkbox.checked){
+                    checkbox.parentElement.remove();
+                }
+            });
+
+            const remainingCheckboxes = document.querySelectorAll('.todo-checkbox');
+            if (remainingCheckboxes.length === 0) {
+                deleteButton.style.display = "none";
+            }
+
+            alert('刪除成功');
+        
+        });
+        
+        const addButton = document.querySelector('.button1');
+        const reduceButton = document.querySelector('.button2');
+        const amount = document.querySelector('.amount');
+    
+        addButton.addEventListener('click',() => {
+            amount.value = parseInt(amount.value) + 1;
+        });
+
+        reduceButton.addEventListener('click',() => {
+            if( parseInt(amount.value) !== 0){
+                amount.value = parseInt(amount.value) - 1;
+            }
+        });
+
+        /* function addAmount(){
+             const amount = document.querySelector('.amount');
+             amount.value = parseInt(amount.value) + 1;
+         }
+
+         function reduceAmount(){
+             const amount = document.querySelector('.amount');
+             if (parseInt(amount.value) !== 0){
+                 amount.value = parseInt(amount.value) - 1;
+             }
+         } */
+
+    </script>
+</body>
+</html>
