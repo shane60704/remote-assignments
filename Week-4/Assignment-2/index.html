@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      html {
+        font-size: 10px;
+      }
+      .wrap {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container{
+        width: 70%;
+        padding:20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: beige;
+      }
+      .container h1{
+        margin: 0 0 10px 0;
+      }
+      #product-list{
+        width: 70%;
+        display: flex;
+        flex-wrap: wrap;
+        gap:20px;
+      }
+      .product{
+        flex: 1 1 30%;
+        text-align: center; 
+        padding:40px 0;
+        border-radius: 10px;
+        border: 1px solid gray;
+        background-color: white;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="container">
+        <h1>Product List</h1>
+        <div id="product-list"></div>
+      </div>
+    </div>
+    <script>
+      function ajax(src, callback) {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", src);
+          xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+              const data = JSON.parse(this.responseText);
+              callback(data);
+            }
+          };
+          xhr.send();
+      }
+      function render(data) {
+          let productList = document.getElementById("product-list");
+          for (let i = 0; i < data.length; i++) {
+            let product = document.createElement("div");
+            product.className = "product";
+
+            let name = document.createElement("h2");
+            name.className = "product_name";
+            name.textContent = `${data[i].name}`;
+            product.appendChild(name);
+
+            let price = document.createElement("p");
+            price.className = "product_price";
+            price.textContent = `售價 : ${data[i].price}`;
+            product.appendChild(price);
+
+            let description = document.createElement("p");
+            description.className = "product_description";
+            description.textContent = data[i].description;
+            product.appendChild(description);
+
+            productList.appendChild(product);
+          }
+      }
+
+      ajax(
+        "https://remote-assignment.s3.ap-northeast-1.amazonaws.com/products",
+        function (response) {
+          render(response);
+        }
+      ); // you should get product information in JSON format and render data in the page
+    </script>
+  </body>
+</html>
